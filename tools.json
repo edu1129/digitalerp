@@ -1,0 +1,26 @@
+[
+  {
+    "name": "AI Lesson Planner",
+    "description": "Generate lesson plans on any topic.",
+    "url": "#ai-tools",
+    "icon": "https://placehold.co/64x64/3b82f6/ffffff?text=LP"
+  },
+  {
+    "name": "Image Editor",
+    "description": "A simple online image editor.",
+    "url": "https://www.photopea.com/",
+    "icon": "https://placehold.co/64x64/ef4444/ffffff?text=IE"
+  },
+  {
+    "name": "Code Playground",
+    "description": "Test your HTML, CSS, and JS code.",
+    "url": "https://codepen.io/pen/",
+    "icon": "https://placehold.co/64x64/22c55e/ffffff?text=CP"
+  },
+  {
+    "name": "PDF Tools",
+    "description": "Merge, split, and edit PDF files.",
+    "url": "https://www.ilovepdf.com/",
+    "icon": "https://placehold.co/64x64/f97316/ffffff?text=PDF"
+  }
+]

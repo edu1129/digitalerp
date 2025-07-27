@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Digital ERP</title>
+    
+    <!-- SEO Meta Tags (Modified for better SEO) -->
+    <meta name="description" content="Digital ERP offers a complete and free school management software to digitize your institution. Manage attendance, fees, exams, results, and staff with our all-in-one ERP solution.">
+    <meta name="keywords" content="Digital ERP, free school erp, school management system, coaching management software, student information system, online fee payment, attendance tracking, parent portal, teacher login, admit card generator, online results, finance management for schools, digitalerp.shop">
+    <meta name="author" content="Digital Education System">
+    <link rel="canonical" href="https://digitalerp.shop" />
+      <link rel="icon" type="image/png" href="/icon.png">
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://digitalerp.shop">
+    <meta property="og:title" content="Digital ERP - The Free, All-in-One School Management Software">
+    <meta property="og:description" content="Digitize your school, coaching, or business for free with Digital ERP. Featuring 50+ tools for attendance, fees, exams, logins, and more.">
+    <meta property="og:image" content="https://placehold.co/1200x630/1e40af/ffffff?text=Digital+ERP">
+
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://digitalerp.shop">
+    <meta property="twitter:title" content="Digital ERP - The Free, All-in-One School Management Software">
+    <meta property="twitter:description" content="Digitize your school, coaching, or business for free with Digital ERP. Featuring 50+ tools for attendance, fees, exams, logins, and more.">
+    <meta property="twitter:image" content="https://placehold.co/1200x630/1e40af/ffffff?text=Digital+ERP">
+    
+    <link rel="icon" href="https://placehold.co/32x32/1e40af/ffffff?text=DE" type="image/png">
+    <meta name="theme-color" content="#1d4ed8">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="https://placehold.co/180x180/1e40af/ffffff?text=DE">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles & Animations -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+        }
+
+        .animated-gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-flow 5s linear infinite;
+        }
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #f8fafc; z-index: 99999; display: flex;
+            justify-content: center; align-items: center; transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        #preloader.hidden { opacity: 0; visibility: hidden; }
+        .spinner {
+            width: 48px; height: 48px; border: 4px solid rgba(59, 130, 246, 0.2);
+            border-top-color: #3b82f6; border-radius: 50%; animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .nav-link.active { color: #3b82f6; font-weight: 600; }
+
+
+        #main-header.scrolled {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+        
+        .feature-card, .service-card { transition: all 0.3s ease-in-out; }
+        .feature-card:hover, .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        
+        #terms-page h2 { font-size: 1.875rem; font-weight: 700; color: #1e293b; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.75rem; }
+        #terms-page h3 { font-size: 1.25rem; font-weight: 600; color: #334155; margin-top: 2rem; margin-bottom: 1rem; }
+        #terms-page p, #terms-page li { color: #475569; line-height: 1.75; margin-bottom: 1rem; }
+        #terms-page ul { list-style-type: disc; padding-left: 1.5rem; }
+    </style>
+</head>
+<body class="invisible opacity-0">
+
+    <!-- Preloader -->
+    <div id="preloader"><div class="spinner"></div></div>
+
+    <!-- Header -->
+    <header id="main-header" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 transition-all duration-300 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" data-page="home" class="nav-logo text-2xl font-bold text-slate-800">
+                    Digital<span class="text-blue-600">ERP</span>
+                </a>
+                <nav id="main-nav" class="hidden md:flex items-center space-x-8">
+                    <ul class="flex items-center space-x-8">
+                        <li><a href="#" data-page="home" class="nav-link font-medium text-slate-600 hover:text-blue-600 transition-colors">Home</a></li>
+                        <li><a href="#" data-page="pricing" class="nav-link font-medium text-slate-600 hover:text-blue-600 transition-colors">Pricing</a></li>
+                        <li><a href="#" data-page="terms" class="nav-link font-medium text-slate-600 hover:text-blue-600 transition-colors">Terms & Conditions</a></li>
+                        <li><a href="#contact" class="nav-link-contact font-medium text-slate-600 hover:text-blue-600 transition-colors">Contact</a></li>
+                    </ul>
+                </nav>
+                <a href="#contact" class="nav-link-contact hidden md:inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-sm">Get Started</a>
+                <button id="mobile-menu-toggle" class="md:hidden text-slate-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4">
+                 <ul class="flex flex-col space-y-4">
+                    <li><a href="#" data-page="home" class="nav-link block font-medium text-slate-600 hover:text-blue-600 transition-colors py-2">Home</a></li>
+                    <li><a href="#" data-page="pricing" class="nav-link block font-medium text-slate-600 hover:text-blue-600 transition-colors py-2">Pricing</a></li>
+                    <li><a href="#" data-page="terms" class="nav-link block font-medium text-slate-600 hover:text-blue-600 transition-colors py-2">Terms & Conditions</a></li>
+                    <li><a href="#contact" class="nav-link-contact block font-medium text-slate-600 hover:text-blue-600 transition-colors py-2">Contact</a></li>
+                    <li><a href="#contact" class="nav-link-contact block bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center mt-2">Get Started</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Main Content Wrapper (Home Page - MODIFIED AS PER REQUEST) -->
+        <div id="main-content">
+            <!-- Hero Section (Modified Copy) -->
+            <section id="hero" class="bg-white py-20 md:py-32">
+                <div class="container mx-auto px-6 text-center">
+                    <div class="max-w-4xl mx-auto">
+                        <h1 class="text-4xl md:text-6xl font-extrabold text-slate-800 mb-6 leading-tight">
+                            The Ultimate <span class="animated-gradient-text">Free ERP</span> to Digitize Your Institution
+                        </h1>
+                        <p class="text-lg md:text-xl text-slate-600 mb-10 max-w-3xl mx-auto">
+                            Our mission is to digitally empower every school, coaching center, and business with a powerful, comprehensive, and absolutely free management platform. Join the digital revolution today.
+                        </p>
+                        <div class="flex justify-center items-center gap-4 flex-wrap">
+                            <a href="#" id="open-popup-btn" class="bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg">Login / Register for Free</a>
+                            <a href="#features" class="bg-slate-200 text-slate-800 font-semibold px-8 py-3 rounded-lg hover:bg-slate-300 transition-all duration-300 transform hover:scale-105">Explore 50+ Features</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section (Completely Revamped with more cards and animations) -->
+            <section id="features" class="py-20 md:py-24">
+                <div class="container mx-auto px-6">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4 scroll-animate">A Complete Digital Ecosystem for Free</h2>
+                        <p class="text-lg text-slate-600 scroll-animate" style="transition-delay: 0.1s;">
+                            We provide over 50+ integrated modules to manage everything from students and staff to finance and exams. All in one place, accessible from anywhere.
+                        </p>
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        
+                        <!-- Feature Card 1: Student Management -->
+                        <div class="feature-card bg-white p-6 rounded-xl shadow-md scroll-animate">
+                            <div class="bg-blue-100 text-blue-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Student Management</h3>
+                            <p class="text-slate-600">Complete student lifecycle management from admission to alumni.</p>
+                        </div>
+                        
+                        <!-- Feature Card 2: Fee Management -->
+                        <div class="feature-card bg-white p-6 rounded-xl shadow-md scroll-animate" style="transition-delay: 0.05s;">
+                            <div class="bg-green-100 text-green-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Fees & Dues Records</h3>
+                            <p class="text-slate-600">Automate fee collection, track dues, send reminders, and manage records.</p>
+                        </div>
+                        
+                        <!-- Feature Card 3: Attendance -->
+                        <div class="feature-card bg-white p-6 rounded-xl shadow-md scroll-animate" style="transition-delay: 0.1s;">
+                            <div class="bg-yellow-100 text-yellow-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
+                               <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="m9 14 2 2 4-4"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Smart Attendance</h3>
+                            <p class="text-slate-600">Track student and staff attendance with detailed daily and monthly reports.</p>
+                        </div>
+
+                        <!-- Feature Card 4: Staff & Salary -->
+                        <div class="feature-card bg-white p-6 rounded-xl shadow-md scroll-animate" style="transition-delay: 0.15s;">
+                            <div class="bg-purple-100 text-purple-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.5A8 8 0 0 1 12 3a8 8 0 0 1 8 8.5c0 7-8 11.5-8 11.5z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Staff & Salary</h3>
+                            <p class="text-slate-600">Manage all teachers and staff profiles, and automate payroll processing.</p>
+                        </div>
+
+                        <!-- Feature Card 5: Card Generator -->
+                        <div class="feature-card bg-white p-6 rounded-xl shadow-md scroll-animate" style="transition-delay: 0.2s;">
+                            <div class="bg-red-100 text-red-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v18"/><path d="M12.4 3H18a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5.6"/><path d="M15 9h-3"/><path d="M15 15h-3"/><path d="M9 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h5"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">One-Click Card Generator</h3>
+                            <p class="text-slate-600">Generate ID cards, admit cards, progress cards, and certificates instantly.</p>
+                        </div>
+
+                        <!-- Feature Card 6: Online Results -->
+                        <div class="feature-card bg-white p-6 rounded-xl shadow-md scroll-animate" style="transition-delay: 0.25s;">
+                            <div class="bg-indigo-100 text-indigo-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m10 13-2 2 2 2"/><path d="m14 13 2 2-2 2"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Online Results & Marksheets</h3>
+                            <p class="text-slate-600">Publish exam results online and generate detailed digital marksheets.</p>
+                        </div>
+
+                        <!-- Feature Card 7: Finance Management -->
+                        <div class="feature-card bg-white p-6 rounded-xl shadow-md scroll-animate" style="transition-delay: 0.3s;">
+                            <div class="bg-teal-100 text-teal-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Finance & Expenses</h3>
+                            <p class="text-slate-600">Comprehensive accounting, from expense tracking to profit/loss statements.</p>
+                        </div>
+
+                        <!-- Feature Card 8: Multi-Login Portals -->
+                        <div class="feature-card bg-white p-6 rounded-xl shadow-md scroll-animate" style="transition-delay: 0.35s;">
+                            <div class="bg-cyan-100 text-cyan-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a1 1 0 0 1 .9-.54l1.32.22a1.8 1.8 0 0 1 1.58 1.94l-.32 1.7a1 1 0 0 1-.9.78h-2.16a1 1 0 0 1-.9-.78l-.32-1.7a1.8 1.8 0 0 1 1.58-1.94Z"/><path d="M8 9.33a1 1 0 0 0-1-1l-1.32.22a1.8 1.8 0 0 0-1.58 1.94l.32 1.7a1 1 0 0 0 1 .78h2.16a1 1 0 0 0 1-.78l.32-1.7a1.8 1.8 0 0 0-1.58-1.94Z"/><path d="M12 14a1 1 0 0 1 .9-.54l1.32.22a1.8 1.8 0 0 1 1.58 1.94l-.32 1.7a1 1 0 0 1-.9.78h-2.16a1 1 0 0 1-.9-.78l-.32-1.7a1.8 1.8 0 0 1 1.58-1.94Z"/><circle cx="12" cy="6" r="2"/><circle cx="6" cy="12" r="2"/><circle cx="18" cy="12" r="2"/><circle cx="12" cy="18" r="2"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Multiple Login Portals</h3>
+                            <p class="text-slate-600">Dedicated online access for Parents, Teachers, Students, and Principal.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section id="services" class="py-20 md:py-24">
+                 <div class="container mx-auto px-6">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4 scroll-animate">Beyond the ERP: Our Commitment to You</h2>
+                         <p class="text-lg text-slate-600 scroll-animate" style="transition-delay: 0.1s;">
+                            We provide end-to-end solutions to ensure your digital transformation is a resounding success.
+                        </p>
+                    </div>
+                     <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                        <div class="bg-white p-8 rounded-xl shadow-md flex items-start gap-6 scroll-animate service-card" style="transition-delay: 0.2s;">
+                            <div class="bg-blue-100 text-blue-600 rounded-lg w-16 h-14 flex-shrink-0 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">Custom App & Web Development</h3>
+                                <p class="text-slate-600">Need a unique mobile app or a stunning website? Our expert developers will build solutions tailored to your brand and vision.</p>
+                            </div>
+                        </div>
+                         <div class="bg-white p-8 rounded-xl shadow-md flex items-start gap-6 scroll-animate service-card" style="transition-delay: 0.3s;">
+                            <div class="bg-purple-100 text-purple-600 rounded-lg w-16 h-14 flex-shrink-0 flex items-center justify-center">
+                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">AI-Powered & Human Support</h3>
+                                <p class="text-slate-600">Get instant answers from our AI assistant or connect with our dedicated human support team for expert help, whenever you need it.</p>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="bg-white py-20 md:py-24">
+                <div class="container mx-auto px-6">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4 scroll-animate">Start Your Digital Journey Today</h2>
+                        <p class="text-lg text-slate-600 scroll-animate" style="transition-delay: 0.1s;">
+                            Fill out the form to register your institution for free, or contact us with any questions. Our team is ready to guide you.
+                        </p>
+                    </div>
+                    <div class="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+                        <div class="lg:col-span-2 scroll-animate" style="transition-delay: 0.2s;">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-6">Contact Information</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-blue-100 text-blue-600 rounded-lg w-10 h-10 flex-shrink-0 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /></svg></div>
+                                    <div>
+                                        <h4 class="font-semibold text-slate-700">Location</h4>
+                                        <p class="text-slate-600">Patna, Bihar, India</p>
+                                    </div>
+                                </div>
+                                 <div class="flex items-start gap-4">
+                                    <div class="bg-blue-100 text-blue-600 rounded-lg w-10 h-10 flex-shrink-0 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" /></svg></div>
+                                    <div>
+                                        <h4 class="font-semibold text-slate-700">Phone</h4>
+                                        <a href="tel:+919241981083" class="text-slate-600 hover:text-blue-600">+91 92419 81083</a>
+                                    </div>
+                                </div>
+                                 <div class="flex items-start gap-4">
+                                    <div class="bg-blue-100 text-blue-600 rounded-lg w-10 h-10 flex-shrink-0 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg></div>
+                                    <div>
+                                        <h4 class="font-semibold text-slate-700">Email</h4>
+                                        <a href="mailto:teamdigitalerp@gmail.com" class="text-slate-600 hover:text-blue-600">teamdigitalerp@gmail.com</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-3 bg-slate-50 p-8 rounded-xl scroll-animate" style="transition-delay: 0.3s;">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-6">Free Registration Form</h3>
+                            <div id="form-feedback" class="hidden mb-4 p-4 rounded-lg text-sm"></div>
+                            <form id="registration-form" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="schoolName" class="font-medium text-slate-700 block mb-2">School/Business Name*</label>
+                                    <input type="text" id="schoolName" name="schoolName" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                                </div>
+                                <div>
+                                    <label for="contactPerson" class="font-medium text-slate-700 block mb-2">Contact Person*</label>
+                                    <input type="text" id="contactPerson" name="contactPerson" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                                </div>
+                                <div>
+                                    <label for="email" class="font-medium text-slate-700 block mb-2">Email Address*</label>
+                                    <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                                </div>
+                                <div>
+                                    <label for="phone" class="font-medium text-slate-700 block mb-2">Phone Number*</label>
+                                    <input type="tel" id="phone" name="phone" required pattern="[6-9][0-9]{9}" title="Please enter a valid 10-digit Indian mobile number" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="message" class="font-medium text-slate-700 block mb-2">Message (Optional)</label>
+                                    <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"></textarea>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <button type="submit" id="submit-button" class="w-full bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+                                        <span class="btn-text">Register Now for Free</span>
+                                        <svg class="spinner-icon hidden h-5 w-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Pricing Page Wrapper (UNCHANGED) -->
+        <div id="pricing-page" class="hidden">
+            <section class="py-20 md:py-24 bg-slate-50">
+                <div class="container mx-auto px-6">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Our Flexible & Transparent Pricing</h2>
+                        <p class="text-lg text-slate-600">
+                            Choose the perfect annual plan that fits your institution's needs. All paid plans include every feature, with special introductory offers.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                        <!-- Free & Standard Plans Column -->
+                        <div class="flex flex-col gap-8">
+                            <!-- Free Plan -->
+                            <div class="border bg-white rounded-lg p-6 flex flex-col h-full transform hover:shadow-xl transition-shadow duration-300">
+                                <div class="flex-grow">
+                                    <div class="bg-green-100 text-green-600 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    </div>
+                                    <h3 class="font-bold text-xl text-slate-800">Free Trial</h3>
+                                    <p class="text-4xl font-extrabold my-3 text-slate-900">₹0</p>
+                                    <p class="text-slate-500 font-medium">Get full access for 3 months to explore all features. No credit card required.</p>
+                                </div>
+                                <a href="#contact" class="select-plan-btn mt-6 w-full text-center bg-green-500 text-white font-semibold py-3 rounded-lg hover:bg-green-600 transition-colors">Start Free Trial</a>
+                            </div>
+                            <!-- Standard Plan -->
+                            <div class="border bg-white rounded-lg p-6 flex flex-col h-full transform hover:shadow-xl transition-shadow duration-300">
+                                <div class="flex-grow">
+                                    <div class="bg-slate-100 text-slate-600 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4M11 3v4m-2-2h4M11 17v4m-2-2h4M17 3v4m-2-2h4M17 17v4m-2-2h4" /></svg>
+                                    </div>
+                                    <h3 class="font-bold text-xl text-slate-800">Standard Plan</h3>
+                                    <p class="text-4xl font-extrabold my-3 text-slate-900">₹2499</p>
+                                    <p class="text-slate-500 font-medium">Our standard annual subscription price, applicable after the initial 3-month offer period ends.</p>
+                                </div>
+                                <a href="#contact" class="select-plan-btn mt-6 w-full text-center bg-slate-500 text-white font-semibold py-3 rounded-lg hover:bg-slate-600 transition-colors">Select Plan</a>
+                            </div>
+                        </div>
+
+                        <!-- Main Offer Column (Highlighted) -->
+                        <div class="border-2 border-blue-500 bg-white rounded-lg p-8 flex flex-col h-full relative transform lg:scale-110 shadow-2xl">
+                            <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-sm font-bold px-4 py-1.5 rounded-full z-10">BEST VALUE</div>
+                            <div class="flex-grow text-center">
+                                <div class="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                                </div>
+                                <h3 class="font-bold text-2xl text-blue-800">Special Launch Offer</h3>
+                                <p class="text-slate-500 mt-2 mb-4">An unbeatable deal for early adopters. Lock in the lowest price for your first year!</p>
+                                <p class="text-5xl font-extrabold my-4 text-blue-600">₹1299</p>
+                                <p class="text-slate-600 font-semibold">For The First Year</p>
+                                <p class="text-sm text-slate-500 mt-2">This exclusive price is available only if you register within the first 15 days of the launch period.</p>
+                            </div>
+                            <a href="#contact" class="select-plan-btn mt-8 w-full text-center bg-blue-500 text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition-colors text-lg">Claim This Offer</a>
+                        </div>
+
+                        <!-- Early Bird Column -->
+                        <div class="flex flex-col gap-8">
+                             <div class="border bg-white rounded-lg p-6 flex flex-col h-full transform hover:shadow-xl transition-shadow duration-300">
+                                <div class="flex-grow">
+                                    <div class="bg-purple-100 text-purple-600 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                    </div>
+                                    <h3 class="font-bold text-xl text-slate-800">Early Bird Plan</h3>
+                                    <p class="text-4xl font-extrabold my-3 text-slate-900">₹1899</p>
+                                    <p class="text-slate-500 font-medium">Missed the 15-day window? You can still get a great annual price for the first 3 months after launch.</p>
+                                </div>
+                                <a href="#contact" class="select-plan-btn mt-6 w-full text-center bg-purple-500 text-white font-semibold py-3 rounded-lg hover:bg-purple-600 transition-colors">Select Plan</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Terms & Conditions Page Wrapper (UNCHANGED) -->
+        <div id="terms-page" class="hidden">
+            <section class="py-20 md:py-24 bg-white">
+                <div class="container mx-auto px-6 max-w-4xl">
+                    <h2 class="text-center">Terms and Conditions</h2>
+                    <p class="text-center text-slate-500 mb-12">Last Updated: 7 July 2025</p>
+
+                    <h3>1. Introduction and Acceptance of Terms</h3>
+                    <p>Welcome to Digital ERP ("we," "us," "our"). These Terms and Conditions ("Terms") govern your use of our school management software, related applications, websites, and services (collectively, the "Service"). The Service is provided by Digital Education System.</p>
+                    <p>By registering for, accessing, or using our Service, you, on behalf of the educational institution you represent ("you," "your," "Institution"), agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, you must not access or use the Service. You represent and warrant that you have the legal authority to bind your Institution to these Terms.</p>
+
+                    <h3>2. Definitions</h3>
+                    <ul>
+                        <li><strong>"Service"</strong> refers to the Digital ERP software-as-a-service platform, including all its modules, features, tools, data, and accompanying documentation.</li>
+                        <li><strong>"Institution"</strong> or <strong>"You"</strong> refers to the school, college, or any educational organization that registers for and uses the Service.</li>
+                        <li><strong>"Authorized User"</strong> refers to an individual (such as an administrator, teacher, student, or parent) who is authorized by the Institution to access and use the Service under the Institution's account.</li>
+                        <li><strong>"Institution Data"</strong> refers to any data, information, or material provided, submitted, or uploaded by the Institution or its Authorized Users to the Service, including but not limited to student records, staff information, academic data, and financial details.</li>
+                        <li><strong>"Subscription"</strong> refers to the plan selected by the Institution to access the Service, which may be a Free Trial or a Paid Plan.</li>
+                    </ul>
+
+                    <h3>3. License to Use the Service</h3>
+                    <p>Subject to your compliance with these Terms and payment of any applicable fees, we grant you a limited, non-exclusive, non-transferable, non-sublicensable, and revocable license to access and use the Service for your Institution's internal administrative and educational purposes during the term of your Subscription.</p>
+                    <p>This license does not grant you any rights to our source code, and you agree not to, directly or indirectly: reverse engineer, decompile, disassemble, or otherwise attempt to discover the source code, object code, or underlying structure of the Service; modify, translate, or create derivative works based on the Service; or copy, rent, lease, distribute, or otherwise transfer any of the rights that you receive hereunder.</p>
+
+                    <h3>4. User Accounts and Responsibilities</h3>
+                    <p>The Institution is responsible for managing all Authorized User accounts associated with its Subscription. This includes creating, modifying, and deactivating accounts for administrators, staff, students, and parents.</p>
+                    <p>You are responsible for:</p>
+                    <ul>
+                        <li>Maintaining the confidentiality of all login credentials for Authorized User accounts.</li>
+                        <li>All activities that occur under your Institution's accounts. You must notify us immediately of any unauthorized use of your accounts or any other breach of security.</li>
+                        <li>Ensuring that all Authorized Users comply with these Terms and all applicable laws and regulations.</li>
+                        <li>The accuracy, quality, and legality of all Institution Data. You are solely responsible for obtaining all necessary consents and permissions required to collect, process, and store Institution Data within the Service, especially concerning personal data of minors.</li>
+                    </ul>
+
+                    <h3>5. Free Trial and Paid Services</h3>
+                    <p><strong>Free Trial:</strong> We may offer a free trial Subscription for a limited period (e.g., 3 months). During the free trial, the Service is provided "as-is" without any warranty. We reserve the right to modify or terminate the free trial offer at any time without prior notice. At the end of the trial period, your access to the Service may be suspended unless you upgrade to a Paid Plan.</p>
+                    <p><strong>Paid Plans and Fees:</strong> The Service is offered under various annual subscription plans ("Paid Plans") as detailed on our Pricing page. All fees are quoted in Indian Rupees (INR) and are exclusive of any applicable taxes, which you are responsible for paying.</p>
+                    <p><strong>Billing and Payment:</strong> By selecting a Paid Plan, you agree to pay the annual subscription fees in advance. Fees are non-refundable, except as required by law or as explicitly stated in these Terms. We reserve the right to change our pricing, but any price changes will only apply to subsequent subscription periods.</p>
+                    <p><strong>Promotional Offers:</strong> We may offer promotional pricing, such as the "Launch Offer" or "Early Bird Plan." These offers are time-sensitive and subject to specific eligibility criteria as described on our Pricing page. The promotional price is typically valid for the first annual subscription term only. Upon renewal, the standard pricing in effect at that time will apply.</p>
+
+                    <h3>6. Intellectual Property Rights</h3>
+                    <p><strong>Our IP:</strong> We own and retain all right, title, and interest in and to the Service, including all underlying software, technology, trademarks, branding, and any derivative works. These Terms do not grant you any ownership rights to our intellectual property.</p>
+                    <p><strong>Your IP:</strong> You (the Institution) own and retain all right, title, and interest in and to your Institution Data. You grant us a worldwide, non-exclusive, royalty-free license to host, copy, transmit, and display your Institution Data as reasonably necessary for us to provide and maintain the Service in accordance with these Terms.</p>
+
+                    <h3>7. Data Privacy and Confidentiality</h3>
+                    <p>Our collection and use of personal information in connection with the Service are described in our Privacy Policy, which is incorporated by reference into these Terms. We are committed to protecting the privacy and security of your Institution Data.</p>
+                    <p>We will implement and maintain appropriate technical and organizational measures to protect Institution Data against accidental or unlawful destruction, loss, alteration, unauthorized disclosure, or access. We will not access, use, or disclose your Institution Data except as required to provide the Service, to comply with the law, or as otherwise instructed by you.</p>
+
+                    <h3>8. Acceptable Use Policy</h3>
+                    <p>You agree not to use the Service to:</p>
+                    <ul>
+                        <li>Upload or transmit any data that is unlawful, harmful, threatening, abusive, defamatory, obscene, or otherwise objectionable.</li>
+                        <li>Violate the privacy rights or intellectual property rights of others.</li>
+                        <li>Transmit any viruses, worms, or other malicious code.</li>
+                        <li>Attempt to gain unauthorized access to the Service, other accounts, or computer systems connected to the Service.</li>
+                        <li>Interfere with or disrupt the integrity or performance of the Service.</li>
+                    </ul>
+                    <p>We reserve the right to suspend or terminate your access to the Service if we determine, in our sole discretion, that you have violated this Acceptable Use Policy.</p>
+
+                    <h3>9. Limitation of Liability</h3>
+                    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL DIGITAL ERP, ITS AFFILIATES, DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE FOR ANY INDIRECT, PUNITIVE, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR EXEMPLARY DAMAGES, INCLUDING WITHOUT LIMITATION DAMAGES FOR LOSS OF PROFITS, GOODWILL, USE, DATA, OR OTHER INTANGIBLE LOSSES, THAT RESULT FROM THE USE OF, OR INABILITY TO USE, THE SERVICE.</p>
+                    <p>UNDER NO CIRCUMSTANCES WILL OUR TOTAL LIABILITY OF ANY KIND ARISING OUT OF OR RELATED TO YOUR USE OF THE SERVICE (INCLUDING BUT NOT LIMITED TO WARRANTY CLAIMS), REGARDLESS OF THE FORUM AND REGARDLESS OF WHETHER ANY ACTION OR CLAIM IS BASED ON CONTRACT, TORT, OR OTHERWISE, EXCEED THE TOTAL AMOUNT OF FEES PAID BY YOU TO US FOR THE SERVICE DURING THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE CLAIM.</p>
+
+                    <h3>10. Termination</h3>
+                    <p>You may terminate your Subscription at any time by providing written notice to us. Termination will be effective at the end of your current annual billing cycle, and you will not be entitled to a refund for any prepaid fees.</p>
+                    <p>We may suspend or terminate your access to the Service if you materially breach these Terms and fail to cure such breach within thirty (30) days of receiving written notice from us. We may terminate your account immediately if your use of the Service poses a security risk or violates the law.</p>
+                    <p>Upon termination, your right to use the Service will cease immediately. We will provide you with a reasonable opportunity to export your Institution Data.</p>
+
+                    <h3>11. Governing Law and Dispute Resolution</h3>
+                    <p>These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law principles. Any disputes arising out of or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts located in Patna, Bihar, India.</p>
+
+                    <h3>12. Changes to Terms</h3>
+                    <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion. By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms.</p>
+
+                    <h3>13. Contact Information</h3>
+                    <p>If you have any questions about these Terms, please contact us at <a href="mailto:teamdigitalerp@gmail.com" class="text-blue-600 hover:underline">teamdigitalerp@gmail.com</a>.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-400">
+        <div class="container mx-auto px-6 py-8">
+            <div class="text-center">
+                <a href="#" data-page="home" class="nav-logo text-2xl font-bold text-white">
+                    Digital<span class="text-blue-500">ERP</span>
+                </a>
+                <p class="mt-4 mb-6 max-w-md mx-auto">Empowering educational institutions and businesses through innovative, free, and accessible technology.</p>
+                <div class="border-t border-slate-700 pt-6 mt-6">
+                    <p>&copy; <span id="currentYear"></span> Digital ERP. All Rights Reserved. A Product by Digital Education System.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Registration Popup Modal -->
+    <div id="registration-popup" class="fixed inset-0 bg-black/60 z-[100] hidden items-center justify-center p-4">
+        <div id="popup-content-reg" class="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md text-center transform scale-95 opacity-0 transition-all duration-300">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-slate-800">Choose Your Login Portal</h3>
+                <button id="popup-close-btn-reg" class="text-slate-400 hover:text-slate-600 text-3xl leading-none">&times;</button>
+            </div>
+            <div class="flex flex-col gap-4">
+                <a href="https://students.digitalerp.shop" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-colors">Student Login</a>
+                <a href="https://admin.digitalerp.shop" target="_blank" rel="noopener noreferrer" class="block w-full bg-slate-600 text-white font-semibold py-3 rounded-lg hover:bg-slate-700 transition-colors">Teacher Login</a>
+                <a href="https://admin.digitalerp.shop/" target="_blank" rel="noopener noreferrer" class="block w-full bg-slate-600 text-white font-semibold py-3 rounded-lg hover:bg-slate-700 transition-colors">Principal Login</a>
+                <a href="https://agent.digitalerp.shop/" target="_blank" rel="noopener noreferrer" class="block w-full bg-slate-800 text-white font-semibold py-3 rounded-lg hover:bg-slate-900 transition-colors">Admin Login</a>
+                <a href="https://analyze.digitalerp.shop" target="_blank" rel="noopener noreferrer" class="block w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 rounded-lg hover:opacity-90 transition-opacity">Premium Access</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript (Unchanged, as requested) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const googleAppsScriptUrl = 'https://script.google.com/macros/s/AKfycby4H7pjWBrQLTI0VnSnIVLu-4g_XgA9F1nKE0-X0_SwDWW5SpXyTgykFYI0qIfOeP5PJg/exec';
+            const mainContent = document.getElementById('main-content');
+            const pricingPage = document.getElementById('pricing-page');
+            const termsPage = document.getElementById('terms-page');
+            const allPages = [mainContent, pricingPage, termsPage];
+            const allNavLinks = document.querySelectorAll('.nav-link');
+            const allContactLinks = document.querySelectorAll('.nav-link-contact');
+            const allLogoLinks = document.querySelectorAll('.nav-logo');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            const showPage = (pageId) => {
+                allPages.forEach(page => page.classList.add('hidden'));
+                const pageToShow = document.getElementById(pageId === 'home' ? 'main-content' : pageId + '-page');
+                if (pageToShow) pageToShow.classList.remove('hidden');
+
+                allNavLinks.forEach(link => {
+                    link.classList.toggle('active', link.dataset.page === pageId);
+                });
+                
+                window.scrollTo(0, 0); 
+                document.querySelectorAll('.scroll-animate').forEach(el => el.classList.remove('visible'));
+                setTimeout(() => {
+                    const scrollObserver = new IntersectionObserver((entries, observer) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible');
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.1 });
+                    document.querySelectorAll('.scroll-animate').forEach(el => scrollObserver.observe(el));
+                }, 100);
+            };
+
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.dataset.page;
+                    showPage(pageId);
+                    if (!mobileMenu.classList.contains('hidden')) {
+                         mobileMenu.classList.add('hidden');
+                         document.getElementById('mobile-menu-toggle').querySelector('svg').innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />`;
+                    }
+                });
+            });
+            
+            allLogoLinks.forEach(link => {
+                 link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showPage('home');
+                });
+            });
+
+            allContactLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showPage('home');
+                    setTimeout(() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }), 100);
+                    if (!mobileMenu.classList.contains('hidden')) {
+                         mobileMenu.classList.add('hidden');
+                         document.getElementById('mobile-menu-toggle').querySelector('svg').innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />`;
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.select-plan-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showPage('home');
+                    setTimeout(() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }), 100);
+                });
+            });
+
+            showPage('home');
+
+            const preloader = document.getElementById('preloader');
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                    document.body.classList.remove('invisible', 'opacity-0');
+                    document.body.classList.add('visible', 'opacity-100', 'transition-opacity', 'duration-500');
+                }, 300);
+            });
+
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const menuIcon = mobileMenuToggle.querySelector('svg');
+
+            mobileMenuToggle.addEventListener('click', () => {
+                const isExpanded = mobileMenu.classList.toggle('hidden');
+                menuIcon.innerHTML = !isExpanded 
+                    ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />`
+                    : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />`;
+            });
+
+            const form = document.getElementById('registration-form');
+            const submitButton = document.getElementById('submit-button');
+            const btnText = submitButton.querySelector('.btn-text');
+            const spinnerIcon = submitButton.querySelector('.spinner-icon');
+            const formFeedback = document.getElementById('form-feedback');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                submitButton.disabled = true;
+                btnText.innerText = 'Submitting...';
+                spinnerIcon.classList.remove('hidden');
+                formFeedback.classList.add('hidden');
+                
+                try {
+                    const response = await fetch(googleAppsScriptUrl, { method: 'POST', body: new FormData(form) });
+                    if (!response.ok) throw new Error(`Network response was not ok. Status: ${response.status}`);
+                    const result = await response.json();
+                    if (result.status === 'success') {
+                        showFeedback('success', 'Registration successful! Our team will contact you shortly.');
+                        form.reset();
+                    } else {
+                        throw new Error(result.message || 'An unknown error occurred during submission.');
+                    }
+                } catch (error) {
+                    showFeedback('error', `Submission failed. Please try again or contact us directly.`);
+                    console.error('Form submission error:', error);
+                } finally {
+                    submitButton.disabled = false;
+                    btnText.innerText = 'Register Now for Free';
+                    spinnerIcon.classList.add('hidden');
+                }
+            });
+
+            function showFeedback(type, message) {
+                formFeedback.textContent = message;
+                formFeedback.className = 'p-4 rounded-lg text-sm';
+                formFeedback.classList.add(type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800');
+                formFeedback.classList.remove('hidden');
+            }
+            
+            const regPopup = document.getElementById('registration-popup');
+            const regPopupContent = document.getElementById('popup-content-reg');
+            const openRegBtn = document.getElementById('open-popup-btn');
+            const closeRegBtn = document.getElementById('popup-close-btn-reg');
+
+            const openRegPopup = (e) => {
+                if(e) e.preventDefault();
+                regPopup.classList.remove('hidden');
+                regPopup.classList.add('flex');
+                setTimeout(() => {
+                    regPopupContent.classList.remove('scale-95', 'opacity-0');
+                    regPopupContent.classList.add('scale-100', 'opacity-100');
+                }, 50);
+            };
+
+            const closeRegPopup = () => {
+                regPopupContent.classList.add('scale-95', 'opacity-0');
+                regPopupContent.classList.remove('scale-100', 'opacity-100');
+                setTimeout(() => {
+                    regPopup.classList.add('hidden');
+                    regPopup.classList.remove('flex');
+                }, 300);
+            };
+            
+            if(openRegBtn) openRegBtn.addEventListener('click', openRegPopup);
+            if(closeRegBtn) closeRegBtn.addEventListener('click', closeRegPopup);
+            if(regPopup) regPopup.addEventListener('click', (e) => {
+                if (e.target === regPopup) closeRegPopup();
+            });
+
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+    </script>
+    <script src="app.js" defer></script>
+</body>
+</html>

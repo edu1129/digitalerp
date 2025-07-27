@@ -1,0 +1,16 @@
+{
+  "name": "Digital EPR software",
+  "short_name": "Digital EPR",
+  "description": "Aadvanced professional school management erp software",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./indexphone.html",
+  "display": "standalone",
+  "theme_color": "#007BFF",
+  "background_color": "#FFFFFF"
+}

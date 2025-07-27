@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Digital ERP</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Digital ERP offers a complete and free school management software to digitize your institution.">
+    <meta name="keywords" content="Digital ERP, free school erp, school management system, coaching management software, AI chatbot, lesson planner">
+    <meta name="author" content="Digital Education System">
+    <link rel="canonical" href="https://digitalerp.shop" />
+
+    <link rel="icon" href="https://placehold.co/32x32/1e40af/ffffff?text=DE" type="image/png">
+    <meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="manifest.json">
+      <link rel="icon" type="image/png" href="/icon.png">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #334155; /* slate-700 */
+            padding-bottom: 90px; 
+        }
+
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #f8fafc; z-index: 99999; display: flex;
+            justify-content: center; align-items: center; transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        #preloader.hidden { opacity: 0; visibility: hidden; }
+        .spinner {
+            width: 48px; height: 48px; border: 4px solid rgba(59, 130, 246, 0.2);
+            border-top-color: #3b82f6; border-radius: 50%; animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Page content styles (for internal pages) */
+        .page-content h2 { font-size: 1.5rem; font-weight: 700; color: #1e293b; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.75rem; }
+        .page-content h3 { font-size: 1.125rem; font-weight: 600; color: #334155; margin-top: 2rem; margin-bottom: 1rem; }
+        .page-content p, .page-content li { color: #475569; line-height: 1.75; margin-bottom: 1rem; }
+        .page-content ul { list-style-type: disc; padding-left: 1.5rem; }
+        
+        /* New App-like Grid Item Style from image */
+        .grid-card {
+            padding: 1rem;
+            border-radius: 1.25rem; /* 20px */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            aspect-ratio: 1 / 1;
+            transition: transform 0.2s ease-in-out;
+            position: relative;
+        }
+        .grid-card:hover {
+            transform: scale(1.03);
+        }
+
+        .card-icon {
+            width: 2.5rem; /* 40px */
+            height: 2.5rem; /* 40px */
+            margin-bottom: 0.5rem;
+        }
+
+        .corner-icon {
+            position: absolute;
+            top: 0.75rem; /* 12px */
+            right: 0.75rem; /* 12px */
+            width: 1.5rem; /* 24px */
+            height: 1.5rem; /* 24px */
+            opacity: 0.7;
+        }
+
+        /* Fixed Footer Navigation */
+        .fixed-footer {
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer-btn {
+            transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+            color: #6b7280; /* gray-500 */
+        }
+        .footer-btn.active {
+            color: #ef4444; /* red-500, to match the image's active state */
+            font-weight: 600;
+        }
+
+        /* Chatbot Styles */
+        .chat-message {
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            margin-bottom: 0.75rem;
+            max-width: 80%;
+            line-height: 1.5;
+        }
+        .user-message {
+            background-color: #3b82f6; /* blue-500 */
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 0.25rem;
+        }
+        .bot-message {
+            background-color: #e5e7eb; /* gray-200 */
+            color: #1f2937; /* gray-800 */
+            align-self: flex-start;
+            border-bottom-left-radius: 0.25rem;
+        }
+        .gemini-spinner {
+            border-color: rgba(0,0,0,0.1);
+            border-top-color: #4f46e5;
+        }
+    </style>
+</head>
+<body class="invisible opacity-0">
+
+    <!-- Preloader -->
+    <div id="preloader"><div class="spinner"></div></div>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Home Page -->
+        <div id="home-page">
+            <header class="px-6 py-6">
+                <h1 class="text-3xl font-bold text-slate-800">Notes:- information</h1>
+                <p class="text-slate-500 mt-1 text-lg">Saves information</p>
+            </header>
+            
+            <section class="container mx-auto px-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Row 1 -->
+                    <a href="https://admin.digitalerp.shop/results.html" target="_blank" rel="noopener noreferrer" class="grid-card bg-indigo-500">
+                        <div>
+                             <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-4.67c.625-.933.998-2.004.998-3.135a7.5 7.5 0 00-15 0c0 1.13.373 2.202.998 3.135a6.375 6.375 0 0111.964 4.67l-.001.109z" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">Results</h3>
+                            <p class="text-sm opacity-90">00ngs</p>
+                        </div>
+                    </a>
+                    <a href="#" data-page="ai-tools" class="nav-link grid-card" style="background-color: #F08080;"> <!-- LightCoral -->
+                         <div>
+                            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A11.953 11.953 0 0012 13.5c-2.998 0-5.74-1.1-7.843-2.918m0 0A8.959 8.959 0 003 12c0-.778.099-1.533.284-2.253m18.148 4.506A9.008 9.008 0 0112 21a9.008 9.008 0 01-9.432-6.747M12 3c-5.186 0-9.432 4.03-9.432 9s4.246 9 9.432 9 9.432-4.03 9.432-9-4.246-9-9.432-9z" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">AI Tools</h3>
+                            <p class="text-sm opacity-90">35ngs</p>
+                        </div>
+                    </a>
+
+                     <!-- Row 2 -->
+                    <a href="https://admin.digitalerp.shop/password.html" target="_blank" rel="noopener noreferrer" class="grid-card" style="background-color: #6495ED;"> <!-- CornflowerBlue -->
+                        <div>
+                            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">Forgot Password</h3>
+                            <p class="text-sm opacity-90">55ngs</p>
+                        </div>
+                    </a>
+                    <a href="#" data-page="chatbot" class="nav-link grid-card" style="background-color: #FF7F50;"> <!-- Coral -->
+                        <div>
+                            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">Chat Bot</h3>
+                            <p class="text-sm opacity-90">35ngs</p>
+                        </div>
+                    </a>
+                   
+                    <!-- Row 3 -->
+                    <a href="https://admin.digitalerp.shop/data.html" target="_blank" rel="noopener noreferrer" class="grid-card" style="background-color: #20B2AA;"> <!-- LightSeaGreen -->
+                        <div>
+                            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">Data Download</h3>
+                            <p class="text-sm opacity-90">32ngs</p>
+                        </div>
+                    </a>
+                    <a href="#" data-page="terms" class="nav-link grid-card" style="background-color: #CD5C5C;"> <!-- IndianRed -->
+                        <div>
+                            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">Terms</h3>
+                            <p class="text-sm opacity-90">25ngs</p>
+                        </div>
+                    </a>
+
+                    <!-- Row 4 -->
+                     <a href="https://admin.digitalerp.shop/list.html" target="_blank" rel="noopener noreferrer" class="grid-card" style="background-color: #4682B4;"> <!-- SteelBlue -->
+                        <div>
+                             <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">Dues List</h3>
+                            <p class="text-sm opacity-90">55ngs</p>
+                        </div>
+                    </a>
+                     <a href="https://analyze.digitalerp.shop/" target="_blank" rel="noopener noreferrer" class="grid-card" style="background-color: #FFD700; color: #333;"> <!-- Gold -->
+                        <div class="card-icon">
+                           <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">Premium Analyze</h3>
+                            <p class="text-sm opacity-90">24ngs</p>
+                        </div>
+                    </a>
+                    <a href="#" data-page="tools" class="nav-link grid-card" style="background-color: #9370DB;">
+                        <div>
+                            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.242 1.453l-1.005.827c-.297.243-.475.63-.475 1.025v.093c0 .395.178.782.475 1.025l1.005.827a1.125 1.125 0 01.242 1.453l-1.296 2.247a1.125 1.125 0 01-1.37.49l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.127c-.332.183-.582.495-.645.87l-.213 1.281c-.09.543-.56.94-1.11.94h-2.593c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.063-.374-.313.686-.645-.87a6.52 6.52 0 01-.22-.127c-.324-.196-.72-.257-1.075-.124l-1.217.456a1.125 1.125 0 01-1.37-.49l-1.296-2.247a1.125 1.125 0 01.242-1.453l1.005-.827c.297-.243.475-.63.475-1.025v-.093c0-.395-.178-.782-.475-1.025l-1.005-.827a1.125 1.125 0 01-.242-1.453l1.296-2.247a1.125 1.125 0 011.37-.49l1.217.456c.355.133.75.072 1.076-.124.072-.044.146-.087.22-.127.332-.183.582-.495.645-.87l.213-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">Tools</h3>
+                            <p class="text-sm opacity-90">Useful utilities</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Terms & Conditions Page (Unchanged) -->
+        <div id="terms-page" class="hidden page-content">
+            <section class="py-6 md:py-8 bg-white min-h-screen">
+                <div class="container mx-auto px-4 max-w-4xl">
+                     <div class="flex items-center mb-6">
+                        <button data-page="home" class="nav-link p-2 rounded-full hover:bg-slate-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                        </button>
+                        <h2 class="text-center flex-grow">Terms and Conditions</h2>
+                    </div>
+                    <p class="text-center text-slate-500 mb-8">Last Updated: 7 July 2025</p>
+                    <h3>1. Introduction</h3><p>Welcome to Digital ERP...</p>
+                    <h3>2. The Service</h3><p>Digital ERP provides a comprehensive platform...</p>
+                    <h3>3. Contact Information</h3><p>If you have any questions, please contact us at <a href="mailto:teamdigitalerp@gmail.com" class="text-blue-600 hover:underline">teamdigitalerp@gmail.com</a>.</p>
+                </div>
+            </section>
+        </div>
+        
+        <!-- AI Tools Page (Unchanged) -->
+        <div id="ai-tools-page" class="hidden page-content">
+            <section class="py-6 md:py-8 bg-white min-h-screen">
+                <div class="container mx-auto px-4 max-w-4xl">
+                    <div class="flex items-center mb-6">
+                        <button data-page="home" class="nav-link p-2 rounded-full hover:bg-slate-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                        </button>
+                        <h2 class="text-center flex-grow">AI Lesson Planner</h2>
+                    </div>
+                    <p class="text-center text-slate-500 mb-8">Teachers ke liye ek tool jo kisi bhi topic par lesson ideas generate karta hai.</p>
+                    
+                    <div class="bg-slate-100 p-6 rounded-lg">
+                        <div class="mb-4">
+                            <label for="lesson-topic" class="block text-sm font-medium text-slate-700 mb-2">Lesson ka Topic Daalein:</label>
+                            <input type="text" id="lesson-topic" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Jaise ki 'Photosynthesis' ya 'Indian History'">
+                        </div>
+                        <button id="generate-lesson-btn" class="w-full bg-indigo-600 text-white font-semibold px-8 py-3 rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2">
+                            <span id="lesson-btn-text">✨ Ideas Generate Karein</span>
+                            <div id="lesson-spinner" class="hidden w-5 h-5 border-2 rounded-full animate-spin gemini-spinner"></div>
+                        </button>
+                    </div>
+                    
+                    <div id="lesson-result" class="mt-8"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Chatbot Page (Unchanged) -->
+        <!-- Chatbot Page (New) -->
+        <div id="chatbot-page" class="hidden page-content p-0 m-0">
+            <div class="flex flex-col h-[calc(100vh-90px)] bg-white">
+                <div class="flex items-center p-2 bg-white border-b border-slate-200 flex-shrink-0 shadow-sm">
+                    <button data-page="home" class="nav-link p-2 rounded-full hover:bg-slate-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                    </button>
+                    <h2 class="text-center flex-grow text-lg font-semibold text-slate-800 -ml-10">Digitalero Support</h2>
+                </div>
+                <div class="relative w-full flex-grow">
+                    <iframe src="chatbot.html" class="absolute top-0 left-0 w-full h-full border-0"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tools Page -->
+        <div id="tools-page" class="hidden page-content">
+            <section class="py-6 md:py-8 bg-white min-h-screen">
+                <div class="container mx-auto px-4 max-w-4xl">
+                    <div class="flex items-center mb-6">
+                        <button data-page="home" class="nav-link p-2 rounded-full hover:bg-slate-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                        </button>
+                        <h2 class="text-center flex-grow text-2xl font-bold text-slate-800 -ml-10">All Tools</h2>
+                    </div>
+                    <div id="tools-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <!-- Tools will be loaded here by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Tool Viewer Page -->
+        <div id="tool-viewer-page" class="hidden fixed inset-0 bg-white z-[100]">
+            <div class="flex flex-col h-screen">
+                <div class="flex items-center justify-between p-2 bg-white border-b border-slate-200 flex-shrink-0 shadow-sm">
+                    <button id="back-to-tools-btn" class="p-2 rounded-full hover:bg-slate-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                    </button>
+                    <h2 id="tool-viewer-title" class="text-lg font-semibold text-slate-800">Tool</h2>
+                    <button id="close-tool-viewer-btn" class="p-2 rounded-full hover:bg-slate-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+                <div class="relative w-full flex-grow">
+                    <iframe id="tool-iframe" class="absolute top-0 left-0 w-full h-full border-0" src="about:blank" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- App-like Fixed Footer -->
+    <nav class="fixed-footer fixed bottom-0 left-0 right-0 bg-white flex justify-around py-2 z-50">
+        <a href="https://students.digitalerp.shop" target="_blank" rel="noopener noreferrer" class="footer-btn flex flex-col items-center justify-center text-center w-16">
+            <svg class="h-6 w-6 mb-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0l-1.07-1.07m15.482 0l1.07 1.07m-1.07-1.07V4.286a3 3 0 00-3-3h-4.5a3 3 0 00-3 3v.143m-1.07 1.07h10.5M5.338 16.514a.972.972 0 011.042.063l1.111.74a.972.972 0 001.042.063l1.11-.74a.972.972 0 011.042 0l1.11.74a.972.972 0 001.042 0l1.11-.74a.972.972 0 011.042 0l1.11.74a.972.972 0 001.042.063l1.11-1.11m-15.482.662a.662.662 0 00-.662.662v1.11a.662.662 0 00.662.662h.437a.662.662 0 00.662-.662v-1.11a.662.662 0 00-.662-.662H5.338z" /></svg>
+            <span class="text-xs font-medium">Students</span>
+        </a>
+        <a href="https://admin.digitalerp.shop" target="_blank" rel="noopener noreferrer" class="footer-btn flex flex-col items-center justify-center text-center w-16">
+            <svg class="h-6 w-6 mb-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+            <span class="text-xs font-medium">Admin</span>
+        </a>
+        <a href="https://agent.digitalerp.shop" target="_blank" rel="noopener noreferrer" class="footer-btn active flex flex-col items-center justify-center text-center w-16"> <!-- Added active class to match image -->
+            <svg class="h-6 w-6 mb-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75-.75v-.75M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+            <span class="text-xs font-medium">Agent</span>
+        </a>
+        <a href="https://analyze.digitalerp.shop/" target="_blank" rel="noopener noreferrer" class="footer-btn flex flex-col items-center justify-center text-center w-16">
+            <svg class="h-6 w-6 mb-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span class="text-xs font-medium">Analyze</span>
+        </a>
+        <a href="#" data-page="home" class="nav-link footer-btn flex flex-col items-center justify-center text-center w-16">
+            <svg class="h-6 w-6 mb-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>
+            <span class="text-xs font-medium">Home</span>
+        </a>
+    </nav>
+
+
+    <!-- ######### JAVASCRIPT CODE (UNCHANGED) ######### -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Page containers
+            const homePage = document.getElementById('home-page');
+            const termsPage = document.getElementById('terms-page');
+            const chatbotPage = document.getElementById('chatbot-page');
+            const aiToolsPage = document.getElementById('ai-tools-page');
+            const toolsPage = document.getElementById('tools-page');
+            const toolViewerPage = document.getElementById('tool-viewer-page');
+            const allPages = [homePage, termsPage, chatbotPage, aiToolsPage, toolsPage];
+            
+            // Navigation elements
+            const allNavLinks = document.querySelectorAll('.nav-link, .nav-logo');
+            const footerBtns = document.querySelectorAll('.footer-btn');
+            const backToToolsBtn = document.getElementById('back-to-tools-btn');
+
+            // --- Tool Loading Logic ---
+            const loadTools = async () => {
+                const toolsGrid = document.getElementById('tools-grid');
+                toolsGrid.innerHTML = '<p class="col-span-full text-center text-slate-500">Loading tools...</p>';
+                try {
+                    const response = await fetch('/tools.json');
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    const tools = await response.json();
+                    
+                    toolsGrid.innerHTML = '';
+                    if (tools.length === 0) {
+                        toolsGrid.innerHTML = '<p class="col-span-full text-center text-slate-500">No tools available at the moment.</p>';
+                        return;
+                    }
+
+                    tools.forEach(tool => {
+                        const toolButton = document.createElement('button');
+                        toolButton.className = 'flex flex-col items-center justify-center p-4 border rounded-2xl hover:bg-slate-100 transition-colors text-center space-y-2 focus:outline-none focus:ring-2 focus:ring-indigo-500';
+                        toolButton.innerHTML = `
+                            <img src="${tool.icon}" alt="" class="w-14 h-14 object-contain mb-2">
+                            <span class="font-semibold text-sm text-slate-800">${tool.name}</span>
+                            <p class="text-xs text-slate-500 px-1">${tool.description}</p>
+                        `;
+                        toolButton.addEventListener('click', () => {
+                            if (tool.url.startsWith('#')) {
+                                const pageId = tool.url.substring(1);
+                                showPage(pageId);
+                            } else {
+                                openTool(tool);
+                            }
+                        });
+                        toolsGrid.appendChild(toolButton);
+                    });
+
+                } catch (error) {
+                    console.error('Failed to load tools:', error);
+                    toolsGrid.innerHTML = '<p class="col-span-full text-center text-red-500">Could not load tools. Please try again later.</p>';
+                }
+            };
+
+            const openTool = (tool) => {
+                const toolIframe = document.getElementById('tool-iframe');
+                const toolViewerTitle = document.getElementById('tool-viewer-title');
+                
+                toolViewerTitle.textContent = tool.name;
+                toolIframe.src = tool.url;
+                
+                allPages.forEach(page => page.classList.add('hidden'));
+                toolViewerPage.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling background
+            };
+
+            // --- Page Switching Logic ---
+            const showPage = (pageId) => {
+                allPages.forEach(page => page.classList.add('hidden'));
+                toolViewerPage.classList.add('hidden'); // Always hide tool viewer when switching main pages
+                document.body.style.overflow = 'auto'; // Restore scrolling
+
+                const pageToShow = document.getElementById(pageId + '-page');
+                if (pageToShow) {
+                    pageToShow.classList.remove('hidden');
+                    if (pageId === 'tools') {
+                        loadTools();
+                    }
+                }
+                
+                footerBtns.forEach(btn => {
+                    const isInternalLink = btn.hasAttribute('data-page');
+                    if (isInternalLink) {
+                         // Only make "Home" active when its page is shown
+                         if (btn.dataset.page === 'home') {
+                             btn.classList.toggle('active', pageId === 'home');
+                         }
+                    } else {
+                        // For external links, keep them inactive unless explicitly styled (like "Agent" in this case)
+                    }
+                });
+
+                // When an internal page is selected, "Agent" should not be active.
+                 if(pageId === 'home') {
+                    document.querySelector('a[href="https://agent.digitalerp.shop"]').classList.remove('active');
+                 }
+                
+                window.scrollTo(0, 0); 
+            };
+
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.dataset.page;
+                    showPage(pageId);
+                });
+            });
+
+            const closeToolViewer = () => {
+                toolViewerPage.classList.add('hidden');
+                document.getElementById('tool-iframe').src = 'about:blank';
+                showPage('tools');
+            };
+            backToToolsBtn.addEventListener('click', closeToolViewer);
+
+            const closeToolViewerBtn = document.getElementById('close-tool-viewer-btn');
+            if (closeToolViewerBtn) {
+                closeToolViewerBtn.addEventListener('click', closeToolViewer);
+            }
+
+            // --- Initial Setup ---
+            // Let the static 'active' class on "Agent" handle the initial state
+            // showPage('home'); // Commenting out to preserve initial state from image
+
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    document.getElementById('preloader').classList.add('hidden');
+                    document.body.classList.remove('invisible', 'opacity-0');
+                    document.body.classList.add('visible', 'opacity-100', 'transition-opacity', 'duration-500');
+                }, 300);
+            });
+            
+            // --- Gemini API Integration ---
+            const apiKey = ""; // API key will be provided by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+
+            // --- Lesson Planner Logic ---
+            const generateLessonBtn = document.getElementById('generate-lesson-btn');
+            const lessonTopicInput = document.getElementById('lesson-topic');
+            const lessonResultDiv = document.getElementById('lesson-result');
+            const lessonBtnText = document.getElementById('lesson-btn-text');
+            const lessonSpinner = document.getElementById('lesson-spinner');
+
+            generateLessonBtn.addEventListener('click', async () => {
+                const topic = lessonTopicInput.value.trim();
+                if (!topic) {
+                    lessonResultDiv.innerHTML = `<p class="text-red-500">Kripya ek topic daalein.</p>`;
+                    return;
+                }
+
+                lessonBtnText.textContent = 'Generating...';
+                lessonSpinner.classList.remove('hidden');
+                generateLessonBtn.disabled = true;
+                lessonResultDiv.innerHTML = '';
+
+                const prompt = `Generate 5 creative and engaging lesson ideas for school students on the topic: "${topic}". For each idea, provide a brief description and a fun activity. Format the output clearly with headings.`;
+                
+                try {
+                    const payload = { contents: [{ parts: [{ text: prompt }] }] };
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) throw new Error(`API Error: ${response.statusText}`);
+
+                    const result = await response.json();
+                    
+                    if (result.candidates && result.candidates.length > 0) {
+                        let generatedText = result.candidates[0].content.parts[0].text;
+                        // Basic markdown to HTML conversion
+                        generatedText = generatedText
+                            .replace(/\*\*(.*?)\*\*/g, '<strong class="text-indigo-700">$1</strong>') // Bold
+                            .replace(/\n/g, '<br>'); // Newlines
+                        lessonResultDiv.innerHTML = `<div class="prose prose-indigo mt-6 p-4 border rounded-lg bg-white">${generatedText}</div>`;
+                    } else {
+                        lessonResultDiv.innerHTML = `<p class="text-red-500">Maaf kijiye, ideas generate nahi ho paye. Kripya dobara prayas karein.</p>`;
+                    }
+                } catch (error) {
+                    console.error("Lesson Planner Error:", error);
+                    lessonResultDiv.innerHTML = `<p class="text-red-500">Kuch gadbad ho gayi hai. Kripya apni internet connectivity check karein.</p>`;
+                } finally {
+                    lessonBtnText.textContent = '✨ Ideas Generate Karein';
+                    lessonSpinner.classList.add('hidden');
+                    generateLessonBtn.disabled = false;
+                }
+            });
+        });
+    </script>
+    <script src="app.js" defer></script>
+</body>
+</html>

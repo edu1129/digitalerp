@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitalero - Customer Support</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #0052cc;
+            --primary-light-color: #e6f0ff;
+            --bg-color: #f4f5f7;
+            --surface-color: #ffffff;
+            --text-color: #172b4d;
+            --subtle-text-color: #6b778c;
+            --ai-message-bg: #e9eaec;
+            --user-message-bg: #0052cc;
+            --border-color: #dfe1e6;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        *, :after, :before {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        #chat-app {
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--surface-color);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            body { padding: 1rem; }
+            #chat-app {
+                width: 100%;
+                height: 100%;
+                max-width: 800px;
+                max-height: 95vh;
+                border-radius: 16px;
+                box-shadow: var(--shadow-md);
+                border: 1px solid var(--border-color);
+            }
+        }
+
+        #chat-header {
+            padding: 16px 20px;
+            background-color: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+
+        #header-avatar {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary-color), #0065ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5em;
+        }
+
+        #header-info h1 {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        #header-info p {
+            font-size: 0.85em;
+            color: #36b37e;
+            font-weight: 500;
+            margin: 2px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        #header-info p::before {
+            content: ''; display: block; width: 8px; height: 8px;
+            background-color: #36b37e; border-radius: 50%;
+        }
+
+        #chat-container {
+            flex-grow: 1; overflow-y: auto; padding: 24px 20px;
+            display: flex; flex-direction: column; gap: 24px;
+            scroll-behavior: smooth;
+        }
+
+        #chat-container::-webkit-scrollbar { width: 8px; }
+        #chat-container::-webkit-scrollbar-track { background: transparent; }
+        #chat-container::-webkit-scrollbar-thumb { background-color: #c1c7d0; border-radius: 4px; }
+
+        .message { display: flex; gap: 12px; max-width: 85%; animation: fadeIn 0.5s ease-out; }
+        .message.user { align-self: flex-end; flex-direction: row-reverse; }
+        .message.ai { align-self: flex-start; }
+
+        .avatar {
+            width: 36px; height: 36px; border-radius: 50%;
+            flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+            background-color: var(--ai-message-bg); margin-top: auto;
+        }
+        .avatar svg { width: 20px; height: 20px; fill: var(--subtle-text-color); }
+        .message.user .avatar { background-color: var(--user-message-bg); }
+        .message.user .avatar svg { fill: #fff; }
+
+        .message-content {
+            padding: 12px 16px; border-radius: 18px; line-height: 1.6;
+            word-break: break-word;
+        }
+        .message.user .message-content {
+            background-color: var(--user-message-bg); color: #fff;
+            border-bottom-right-radius: 4px;
+        }
+        .message.ai .message-content {
+            background-color: var(--ai-message-bg); color: var(--text-color);
+            border-bottom-left-radius: 4px;
+        }
+        .message-content p { margin: 0 0 0.75em 0; }
+        .message-content p:last-child { margin-bottom: 0; }
+        .message-content pre { margin: 1em 0; }
+        .message-content code:not(pre > code) {
+            background-color: rgba(0,0,0,0.08); padding: .2em .4em;
+            border-radius: 4px; font-size: .9em; border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* --- START: Special Content Styling --- */
+        .ai-card {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-top: 12px;
+            text-decoration: none;
+            display: block;
+            transition: box-shadow .2s;
+            overflow: hidden;
+        }
+        .ai-card:hover { box-shadow: var(--shadow-sm); }
+
+        .ai-card .card-image { display: block; width: 100%; height: auto; }
+        
+        .card-content {
+            padding: 12px;
+            color: var(--text-color);
+            font-size: 0.95em;
+            word-break: break-all;
+        }
+        
+        .card-footer {
+            padding: 8px 12px;
+            background-color: #fafbfc;
+            border-top: 1px solid var(--border-color);
+            text-align: right;
+        }
+
+        .card-button {
+            text-decoration: none;
+            background-color: var(--primary-light-color);
+            color: var(--primary-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition: all .2s;
+        }
+        .card-button:hover { background-color: #cce0ff; }
+        /* --- END: Special Content --- */
+
+        #chat-form-wrapper {
+            padding: 15px 20px; border-top: 1px solid var(--border-color);
+            background-color: #f9fafb; flex-shrink: 0;
+        }
+        #chat-form { display: flex; align-items: center; gap: 10px; }
+        #input-wrapper { flex-grow: 1; position: relative; }
+        #user-input {
+            width: 100%; padding: 14px 50px 14px 20px;
+            border: 1px solid var(--border-color); border-radius: 25px;
+            background-color: var(--surface-color); color: var(--text-color);
+            font-size: 1em; font-family: var(--font-family);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        #user-input:focus {
+            outline: none; border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px var(--primary-light-color);
+        }
+        #user-input::placeholder { color: var(--subtle-text-color); }
+        #send-button {
+            position: absolute; right: 6px; top: 50%;
+            transform: translateY(-50%); width: 38px; height: 38px; border: none;
+            background-color: var(--primary-color); color: #fff; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background-color .2s, transform .1s;
+        }
+        #send-button:hover:not(:disabled) { background-color: #0041a3; }
+        #send-button:active:not(:disabled) { transform: translateY(-50%) scale(0.9); }
+        #send-button:disabled { background-color: #a5adba; cursor: not-allowed; }
+
+        .typing-indicator { display: flex; align-items: center; gap: 4px; padding: 10px 0; }
+        .typing-indicator span {
+            width: 8px; height: 8px; background-color: var(--subtle-text-color);
+            border-radius: 50%; animation: bob 1.4s infinite ease-in-out both;
+        }
+        .typing-indicator span:nth-child(1) { animation-delay: -.32s; }
+        .typing-indicator span:nth-child(2) { animation-delay: -.16s; }
+
+        @keyframes bob { 0%, 80%, 100% { transform: scale(0) } 40% { transform: scale(1.0) } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: translateY(0) } }
+    </style>
+</head>
+<body>
+    <div id="chat-app">
+        <header id="chat-header">
+            <div id="header-avatar">D</div>
+            <div id="header-info">
+                <h1>Digitalero Support</h1>
+                <p>Online</p>
+            </div>
+        </header>
+
+        <main id="chat-container"></main>
+
+        <footer id="chat-form-wrapper">
+            <form id="chat-form">
+                <div id="input-wrapper">
+                    <input type="text" id="user-input" placeholder="Ask Digitalero Support..." autocomplete="off" required>
+                    <button type="submit" id="send-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                    </button>
+                </div>
+            </form>
+        </footer>
+    </div>
+
+    <script>
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+        const chatContainer = document.getElementById('chat-container');
+        const sendButton = document.getElementById('send-button');
+        const GAS_URL = 'https://script.google.com/macros/s/AKfycbxrNPWZUe0xJEcXbPZraOnWPsUYNyMAi7hYUeKesdYsHvXBSXW2gcMz0mv3hOnU_p9F/exec';
+        let chatHistory = [];
+        let isAwaitingResponse = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            addMessage('ai', "Hello! I'm the support assistant for Digitalero. How can I help you today?");
+        });
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            handleUserSubmit();
+        });
+
+        async function handleUserSubmit() {
+            const prompt = userInput.value.trim();
+            if (!prompt || isAwaitingResponse) return;
+
+            isAwaitingResponse = true;
+            toggleLoading(true);
+            addMessage('user', prompt);
+            const userMessageForHistory = { role: 'user', parts: [{ text: prompt }] };
+            userInput.value = '';
+            
+            const aiMessageElement = addMessage('ai', '', true);
+
+            try {
+                const response = await fetch(GAS_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ prompt: prompt, history: chatHistory }),
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) throw new Error(`Network response was not ok. Status: ${response.status}`);
+                
+                const data = await response.json();
+                if (data.error) throw new Error(data.error.message);
+
+                let fullBotResponse = '';
+                data.forEach(chunk => {
+                    if (chunk.candidates?.[0]?.content?.parts?.[0]?.text) {
+                        fullBotResponse += chunk.candidates[0].content.parts[0].text;
+                    }
+                });
+
+                if (fullBotResponse) {
+                    chatHistory.push(userMessageForHistory);
+                    chatHistory.push({ role: 'model', parts: [{ text: fullBotResponse }] });
+                    renderAiResponse(aiMessageElement, fullBotResponse);
+                } else {
+                    renderAiResponse(aiMessageElement, "I'm sorry, I couldn't generate a response. Please try asking in a different way.");
+                }
+
+            } catch (error) {
+                console.error('FETCH ERROR:', error);
+                const errorMessage = `A connection error occurred: ${error.message}. Please check your connection and try again.`;
+                renderAiResponse(aiMessageElement, errorMessage);
+            } finally {
+                isAwaitingResponse = false;
+                toggleLoading(false);
+            }
+        }
+
+        function addMessage(sender, text = '', showTyping = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            const avatarSVG = sender === 'ai' 
+                ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor"/></svg>` 
+                : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`;
+            
+            messageDiv.innerHTML = `
+                ${sender === 'user' ? '' : `<div class="avatar">${avatarSVG}</div>`}
+                <div class="message-content"></div>
+                ${sender === 'user' ? `<div class="avatar">${avatarSVG}</div>` : ''}
+            `;
+            const contentElement = messageDiv.querySelector('.message-content');
+
+            if (showTyping) {
+                contentElement.innerHTML = `<div class="typing-indicator"><span></span><span></span><span></span></div>`;
+            } else {
+                renderAiResponse(contentElement, text);
+            }
+            
+            chatContainer.appendChild(messageDiv);
+            scrollToBottom();
+            return contentElement;
+        }
+
+        function renderAiResponse(element, text) {
+            // Updated Regex: Handles ***image url*** and @#url#@
+            const regex = /(\*{3}(?:.*?)\*{3}|\@\#(?:.*?)\#\@)/g;
+            const parts = text.split(regex).filter(part => part.trim().length > 0);
+            
+            let contentHtml = '';
+            
+            parts.forEach(part => {
+                // Check for Image format: ***image url***
+                if (part.startsWith('***') && part.endsWith('***')) {
+                    const imageUrl = part.slice(3, -3).trim();
+                    contentHtml += `
+                        <a href="${imageUrl}" target="_blank" rel="noopener noreferrer" class="ai-card">
+                            <img src="${imageUrl}" class="card-image" alt="AI generated image">
+                            <div class="card-footer">
+                                <span class="card-button">View Full Image ↗</span>
+                            </div>
+                        </a>
+                    `;
+                // Check for URL format: @#url#@
+                } else if (part.startsWith('@#') && part.endsWith('#@')) {
+                    const webUrl = part.slice(2, -2).trim();
+                    contentHtml += `
+                        <a href="${webUrl}" target="_blank" rel="noopener noreferrer" class="ai-card">
+                            <div class="card-content">${webUrl}</div>
+                            <div class="card-footer">
+                                <span class="card-button">Visit Site ↗</span>
+                            </div>
+                        </a>
+                    `;
+                // Handle regular text
+                } else {
+                    contentHtml += marked.parse(part);
+                }
+            });
+
+            element.innerHTML = contentHtml;
+            element.querySelectorAll('pre code').forEach(hljs.highlightElement);
+            scrollToBottom();
+        }
+
+        function toggleLoading(isLoading) {
+            sendButton.disabled = isLoading;
+            userInput.disabled = isLoading;
+            if (!isLoading) userInput.focus();
+        }
+
+        function scrollToBottom() {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+    </script>
+</body>
+</html>
