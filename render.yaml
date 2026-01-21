@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: digital-erp
+    env: static
+    staticPublishPath: .
+    buildCommand: null
