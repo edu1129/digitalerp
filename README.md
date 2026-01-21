@@ -1,4 +1,22 @@
-# Project Tools
+# Digital ERP
+
+Digital ERP is a comprehensive and free school management software to digitize your institution. This repository contains the static website source code.
+
+## Deployment
+
+### Deploy to Render
+
+This project is configured for easy deployment on Render.
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+
+1.  Click the button above (or go to Render and connect your repo).
+2.  Render will use the `render.yaml` file to configure the deployment automatically.
+3.  Once deployed, Render will give you the live URL.
+
+For more details, see [DEPLOY.md](DEPLOY.md).
+
+## Project Tools
 
 This project uses a `tools.json` file to dynamically load a list of tools into the application.
 
