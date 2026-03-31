@@ -97,10 +97,10 @@
         .feature-card, .service-card { transition: all 0.3s ease-in-out; }
         .feature-card:hover, .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
         
-        #terms-page h2 { font-size: 1.875rem; font-weight: 700; color: #1e293b; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.75rem; }
-        #terms-page h3 { font-size: 1.25rem; font-weight: 600; color: #334155; margin-top: 2rem; margin-bottom: 1rem; }
-        #terms-page p, #terms-page li { color: #475569; line-height: 1.75; margin-bottom: 1rem; }
-        #terms-page ul { list-style-type: disc; padding-left: 1.5rem; }
+        #terms-page h2, #students-privacy-page h2 { font-size: 1.875rem; font-weight: 700; color: #1e293b; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.75rem; }
+        #terms-page h3, #students-privacy-page h3 { font-size: 1.25rem; font-weight: 600; color: #334155; margin-top: 2rem; margin-bottom: 1rem; }
+        #terms-page p, #terms-page li, #students-privacy-page p, #students-privacy-page li { color: #475569; line-height: 1.75; margin-bottom: 1rem; }
+        #terms-page ul, #students-privacy-page ul { list-style-type: disc; padding-left: 1.5rem; }
     </style>
 </head>
 <body class="invisible opacity-0">
@@ -120,6 +120,7 @@
                         <li><a href="#" data-page="home" class="nav-link font-medium text-slate-600 hover:text-blue-600 transition-colors">Home</a></li>
                         <li><a href="#" data-page="pricing" class="nav-link font-medium text-slate-600 hover:text-blue-600 transition-colors">Pricing</a></li>
                         <li><a href="#" data-page="terms" class="nav-link font-medium text-slate-600 hover:text-blue-600 transition-colors">Terms & Conditions</a></li>
+                        <li><a href="#" data-page="students-privacy" class="nav-link font-medium text-slate-600 hover:text-blue-600 transition-colors">Students Privacy</a></li>
                         <li><a href="#contact" class="nav-link-contact font-medium text-slate-600 hover:text-blue-600 transition-colors">Contact</a></li>
                     </ul>
                 </nav>
@@ -134,6 +135,7 @@
                     <li><a href="#" data-page="home" class="nav-link block font-medium text-slate-600 hover:text-blue-600 transition-colors py-2">Home</a></li>
                     <li><a href="#" data-page="pricing" class="nav-link block font-medium text-slate-600 hover:text-blue-600 transition-colors py-2">Pricing</a></li>
                     <li><a href="#" data-page="terms" class="nav-link block font-medium text-slate-600 hover:text-blue-600 transition-colors py-2">Terms & Conditions</a></li>
+                    <li><a href="#" data-page="students-privacy" class="nav-link block font-medium text-slate-600 hover:text-blue-600 transition-colors py-2">Students Privacy</a></li>
                     <li><a href="#contact" class="nav-link-contact block font-medium text-slate-600 hover:text-blue-600 transition-colors py-2">Contact</a></li>
                     <li><a href="#contact" class="nav-link-contact block bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center mt-2">Get Started</a></li>
                 </ul>
@@ -428,6 +430,67 @@
             </section>
         </div>
 
+        <!-- Students Privacy Policy Page Wrapper -->
+        <div id="students-privacy-page" class="hidden">
+            <section class="py-20 md:py-24 bg-white">
+                <div class="container mx-auto px-6 max-w-4xl">
+                    <h2 class="text-center">Students Privacy Policy</h2>
+                    <p class="text-center text-slate-500 mb-12">Last Updated: 12 August 2025</p>
+
+                    <h3>1. Introduction</h3>
+                    <p>Welcome to the Myzini Students App. This Students Privacy Policy explains how we collect, use, and protect the personal information of students who use our mobile application (the "App"). We are committed to safeguarding the privacy of our students and ensuring a secure learning environment.</p>
+
+                    <h3>2. Information We Collect</h3>
+                    <p>When students use the Myzini Students App, we may collect the following information:</p>
+                    <ul>
+                        <li><strong>Login Information:</strong> Username, password, student ID, and authentication tokens to securely verify your identity when you access the App.</li>
+                        <li><strong>Profile Data:</strong> Name, class, section, roll number, and contact information provided by your educational institution.</li>
+                        <li><strong>Academic Data:</strong> Attendance records, grades, assignments, exam schedules, and performance analytics.</li>
+                        <li><strong>Device Information:</strong> Device type, operating system version, and unique device identifiers to optimize App performance and troubleshoot issues.</li>
+                        <li><strong>Usage Data:</strong> Information about how you interact with the App, such as pages visited, time spent, and features used.</li>
+                    </ul>
+
+                    <h3>3. How We Use Your Information</h3>
+                    <p>We use the collected information for the following purposes:</p>
+                    <ul>
+                        <li><strong>To Provide Services:</strong> To facilitate student login, grant access to educational materials, and display academic records and progress.</li>
+                        <li><strong>Communication:</strong> To send important announcements, notifications, and updates regarding classes, exams, and assignments.</li>
+                        <li><strong>App Improvement:</strong> To analyze usage trends, fix bugs, and enhance the overall user experience and performance of the App.</li>
+                        <li><strong>Security:</strong> To protect against unauthorized access, maintain the integrity of our platform, and ensure a safe digital environment for all users.</li>
+                    </ul>
+
+                    <h3>4. Data Sharing and Disclosure</h3>
+                    <p>We do not sell or rent student personal information to third parties. We may share information only under the following circumstances:</p>
+                    <ul>
+                        <li><strong>Educational Institution:</strong> With teachers, administrators, and parents/guardians authorized by your school to monitor academic progress and engagement.</li>
+                        <li><strong>Service Providers:</strong> With trusted third-party vendors who assist us in operating the App, such as cloud hosting providers and analytics services, bound by strict confidentiality agreements.</li>
+                        <li><strong>Legal Requirements:</strong> If required by law, court order, or governmental request to comply with legal obligations or protect our rights and safety.</li>
+                    </ul>
+
+                    <h3>5. Data Security</h3>
+                    <p>We implement industry-standard security measures to protect student data from unauthorized access, alteration, disclosure, or destruction. This includes encryption of data in transit and at rest, secure authentication protocols, and regular security audits. However, no method of transmission over the internet or electronic storage is completely secure, and we cannot guarantee absolute security.</p>
+
+                    <h3>6. Student and Parent Rights</h3>
+                    <p>Depending on your jurisdiction, students and their parents/guardians may have the right to:</p>
+                    <ul>
+                        <li>Access, review, and request correction of personal information held by us.</li>
+                        <li>Request deletion of personal data, subject to legal and institutional retention requirements.</li>
+                        <li>Withdraw consent for data processing, where applicable.</li>
+                    </ul>
+                    <p>To exercise these rights, please contact your educational institution's administration or contact us directly.</p>
+
+                    <h3>7. Children's Privacy</h3>
+                    <p>The Myzini Students App is intended for use by students under the guidance of their educational institutions and parents. We do not knowingly collect personal information from children under the age of 13 without verifiable parental consent. If we learn that we have inadvertently collected personal information from a child under 13 without such consent, we will take steps to delete it promptly.</p>
+
+                    <h3>8. Changes to This Policy</h3>
+                    <p>We may update this Students Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by posting the updated policy in the App and updating the "Last Updated" date.</p>
+
+                    <h3>9. Contact Us</h3>
+                    <p>If you have any questions, concerns, or feedback regarding this Students Privacy Policy or our data practices, please contact us at <a href="mailto:teamdigitalerp@gmail.com" class="text-blue-600 hover:underline">teamdigitalerp@gmail.com</a>.</p>
+                </div>
+            </section>
+        </div>
+
         <!-- Terms & Conditions Page Wrapper (UNCHANGED) -->
         <div id="terms-page" class="hidden">
             <section class="py-20 md:py-24 bg-white">
@@ -549,7 +612,8 @@
             const mainContent = document.getElementById('main-content');
             const pricingPage = document.getElementById('pricing-page');
             const termsPage = document.getElementById('terms-page');
-            const allPages = [mainContent, pricingPage, termsPage];
+            const studentsPrivacyPage = document.getElementById('students-privacy-page');
+            const allPages = [mainContent, pricingPage, termsPage, studentsPrivacyPage];
             const allNavLinks = document.querySelectorAll('.nav-link');
             const allContactLinks = document.querySelectorAll('.nav-link-contact');
             const allLogoLinks = document.querySelectorAll('.nav-logo');
